@@ -39,6 +39,7 @@ class MainScreen(Screen):
     """
     Class to handle the main screen and its associated touch events
     """
+    button_state_var = False
 
     def pressed(self):
         """
@@ -54,6 +55,16 @@ class MainScreen(Screen):
         :return: None
         """
         SCREEN_MANAGER.current = 'passCode'
+
+    def button_state(self):
+        global button_state_var
+        self.button_state_var=button_state_var
+        if button_state_var:
+            button_state_var=False
+        else:
+            button_state_var=True
+        return button_state_var
+
 
 
 class AdminScreen(Screen):

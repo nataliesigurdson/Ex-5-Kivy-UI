@@ -27,3 +27,17 @@
         x: root.width * 0.5
         y: root.height * 0.5
         on_press: root.pressed()
+
+    DPEAButton:
+        id: OnOffBtn
+        text: "On" if root.button_state  else "Off"
+        size: 100, 100
+        x: root.width * 0.75
+        y:root.height * 0.75
+        color: 1, 0, 0, 1
+       # on_press: root.button_state(OnOffBtn.text)
+        on_press: root.button_state()
+
+    Label:
+        id: btn_label
+        text: "0"
