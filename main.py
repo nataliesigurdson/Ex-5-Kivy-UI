@@ -77,12 +77,11 @@ class MainScreen(Screen):
     def counter(self):
         global ctr2
         if ctr2 < 1:
-            self.ctrBtn.text = "Counter"
             ctr2 += 1
-            self.ctrBtn.text = ctr2
+            self.ctrBtn.text = str(ctr2)
         else:
             ctr2 += 1
-            self.ctrBtn.text = ctr2
+            self.ctrBtn.text = str(ctr2)
 
 
 class AdminScreen(Screen):
