@@ -4,6 +4,8 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
+from kivy.properties import StringProperty
 
 from pidev.MixPanel import MixPanel
 from pidev.kivy.PassCodeScreen import PassCodeScreen
@@ -17,6 +19,8 @@ MIXPANEL = MixPanel("Project Name", MIXPANEL_TOKEN)
 SCREEN_MANAGER = ScreenManager()
 MAIN_SCREEN_NAME = 'main'
 ADMIN_SCREEN_NAME = 'admin'
+ctr = 1
+ctr2 = 0
 
 
 class ProjectNameGUI(App):
@@ -39,7 +43,10 @@ class MainScreen(Screen):
     """
     Class to handle the main screen and its associated touch events
     """
+    onOffBtn = ObjectProperty(None)
+    ctrBtn = ObjectProperty(None)
     button_state_var = False
+
 
     def pressed(self):
         """
@@ -56,15 +63,26 @@ class MainScreen(Screen):
         """
         SCREEN_MANAGER.current = 'passCode'
 
-    def button_state(self):
-        global button_state_var
-        self.button_state_var=button_state_var
-        if button_state_var:
-            button_state_var=False
-        else:
-            button_state_var=True
-        return button_state_var
+    def toggle(self):
+        global ctr  # button_state_var
+        # self.button_state_var=button_state_var
+        if ctr % 2 != 0:
+            self.onOffBtn.text = ""
+            ctr += 1
 
+        else:
+            self.onOffBtn.text = "Toggle"
+            ctr += 1
+
+    def counter(self):
+        global ctr2
+        if ctr2 < 1:
+            self.ctrBtn.text = "Counter"
+            ctr2 += 1
+            self.ctrBtn.text = ctr2
+        else:
+            ctr2 += 1
+            self.ctrBtn.text = ctr2
 
 
 class AdminScreen(Screen):

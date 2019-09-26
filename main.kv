@@ -1,7 +1,14 @@
-<MainScreen>:
+<MainScreen>
+
     name: 'main'
+
+    onOffBtn: onOffBtn
+    ctrBtn: ctrBtn
+
+
     FloatLayout:
         size_hint: None, None
+
 
     DPEAButton:
         id: test_button
@@ -29,15 +36,21 @@
         on_press: root.pressed()
 
     DPEAButton:
-        id: OnOffBtn
-        text: "On" if root.button_state  else "Off"
+        id: onOffBtn
+        text: "Toggle"
         size: 100, 100
         x: root.width * 0.75
         y:root.height * 0.75
         color: 1, 0, 0, 1
        # on_press: root.button_state(OnOffBtn.text)
-        on_press: root.button_state()
+        on_press: root.toggle()
 
-    Label:
-        id: btn_label
-        text: "0"
+    DPEAButton:
+        id: ctrBtn
+        text: "Counter"
+        size: 100, 100
+        x: root.width * 0.25
+        y:root.height * 0.25
+        color: 1, 0, 0, 1
+       # on_press: root.button_state(OnOffBtn.text)
+        on_press: root.counter()
