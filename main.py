@@ -6,6 +6,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
+from kivy.uix.slider import Slider
+
 
 from pidev.MixPanel import MixPanel
 from pidev.kivy.PassCodeScreen import PassCodeScreen
@@ -21,6 +23,7 @@ MAIN_SCREEN_NAME = 'main'
 ADMIN_SCREEN_NAME = 'admin'
 ctr = 1
 ctr2 = 0
+
 
 
 class ProjectNameGUI(App):
@@ -45,6 +48,11 @@ class MainScreen(Screen):
     """
     onOffBtn = ObjectProperty(None)
     ctrBtn = ObjectProperty(None)
+    mtrBtn = ObjectProperty(None)
+    motorLabel = ObjectProperty(None)
+    flip = ObjectProperty(None)
+    slider = ObjectProperty(None)
+    imageBtn = ObjectProperty(None)
     button_state_var = False
 
 
@@ -83,6 +91,9 @@ class MainScreen(Screen):
             ctr2 += 1
             self.ctrBtn.text = str(ctr2)
 
+    def image(self):
+        PauseScreen.pause(pause_scene_name='pauseScene', transition_back_scene='main', text="Test", pause_duration=5)
+
 
 class AdminScreen(Screen):
     """
@@ -101,6 +112,8 @@ class AdminScreen(Screen):
         PassCodeScreen.set_transition_back_screen(MAIN_SCREEN_NAME)  # set screen name to transition to if "Back to Game is pressed"
 
         super(AdminScreen, self).__init__(**kwargs)
+
+        self.flip = False
 
     @staticmethod
     def transition_back():

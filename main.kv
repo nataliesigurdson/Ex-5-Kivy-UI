@@ -4,43 +4,47 @@
 
     onOffBtn: onOffBtn
     ctrBtn: ctrBtn
+    mtrBtn: mtrBtn
+    motorLabel: motorLabel
+    slider: slider
+    imageBtn: imageBtn
 
 
     FloatLayout:
         size_hint: None, None
 
 
-    DPEAButton:
+    #DPEAButton:
         id: test_button
         text: 'test'
         size: 100, 100
         x: root.width * 0.75
         y: root.height * 0.5
         color: 0, 1, 0, 1
-        on_press: root.pressed()
+        #on_press: root.pressed()
 
-    DPEAButton:
+    #DPEAButton:
         text: "test2"
         size: 100, 100
         x: root.width * 0.25
         y:root.height * 0.5
         color: 1, 0, 0, 1
-        on_press: root.pressed()
+        #on_press: root.pressed()
 
-    ImageButton:
+    #ImageButton:
         id: logo_image_button
         source: "../../pidev/kivy/images/DPEALogoTransparent.png"
         size: 100, 100
         x: root.width * 0.5
         y: root.height * 0.5
-        on_press: root.pressed()
+        #on_press: root.pressed()
 
     DPEAButton:
         id: onOffBtn
         text: "Toggle"
         size: 100, 100
         x: root.width * 0.75
-        y:root.height * 0.75
+        y:root.height * 0.25
         color: 1, 0, 0, 1
        # on_press: root.button_state(OnOffBtn.text)
         on_press: root.toggle()
@@ -52,5 +56,43 @@
         x: root.width * 0.25
         y:root.height * 0.25
         color: 1, 0, 0, 1
-       # on_press: root.button_state(OnOffBtn.text)
         on_press: root.counter()
+
+    DPEAButton:
+        id: mtrBtn
+        text: "flip it"
+        size: 100, 100
+        x: root.width * 0.5
+        y:root.height * 0.25
+        color: 0, 1, 1, 1
+        on_press: root.flip = not root.flip
+
+    Label:
+        id: motorLabel
+        text: "motor on" if root.flip else "motor off"
+        size: 1000, 1000
+        x: root.width * 0
+        y:root.height * 0.1
+        color: 0, 0, 0, 1
+
+    Slider:
+        id: slider
+        min: 0
+        max: 100
+        y:root.height * .5
+        step: 1
+
+    Label:
+        text: str(slider.value)
+        size: 1000, 1000
+        x: root.width * 0
+        y:root.height * 0.4
+        color: 0, 0, 0, 1
+
+    ImageButton:
+        id: imageBtn
+        source: "../../pidev/kivy/images/DPEALogoTransparent.png"
+        size: 100, 100
+        x: root.width * 0.5
+        y: root.height * 0.5
+        on_press: root.pressed()
