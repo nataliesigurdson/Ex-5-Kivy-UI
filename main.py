@@ -21,6 +21,7 @@ MIXPANEL = MixPanel("Project Name", MIXPANEL_TOKEN)
 SCREEN_MANAGER = ScreenManager()
 MAIN_SCREEN_NAME = 'main'
 ADMIN_SCREEN_NAME = 'admin'
+TRANSITION_SCREEN_NAME = 'TransitionScreen'
 ctr = 1
 ctr2 = 0
 
@@ -91,8 +92,18 @@ class MainScreen(Screen):
             ctr2 += 1
             self.ctrBtn.text = str(ctr2)
 
-    def image(self):
-        PauseScreen.pause(pause_scene_name='pauseScene', transition_back_scene='main', text="Test", pause_duration=5)
+    def transitionto(self):
+        SCREEN_MANAGER.current = TRANSITION_SCREEN_NAME
+
+
+class TransitionScreen(Screen):
+
+    def __init__(self, **kwargs):
+        Builder.load_file('TransitionScreen.kv')
+        super(TransitionScreen, self).__init__(**kwargs)
+
+    def transitionback(self):
+        SCREEN_MANAGER.current = MAIN_SCREEN_NAME
 
 
 class AdminScreen(Screen):
@@ -147,6 +158,8 @@ SCREEN_MANAGER.add_widget(MainScreen(name=MAIN_SCREEN_NAME))
 SCREEN_MANAGER.add_widget(PassCodeScreen(name='passCode'))
 SCREEN_MANAGER.add_widget(PauseScreen(name='pauseScene'))
 SCREEN_MANAGER.add_widget(AdminScreen(name=ADMIN_SCREEN_NAME))
+SCREEN_MANAGER.add_widget(TransitionScreen(name=TRANSITION_SCREEN_NAME))
+
 
 """
 MixPanel
