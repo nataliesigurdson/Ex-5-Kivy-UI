@@ -7,6 +7,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.slider import Slider
+from kivy.animation import Animation, AnimationTransition
 
 
 from pidev.MixPanel import MixPanel
@@ -97,13 +98,17 @@ class MainScreen(Screen):
 
 
 class TransitionScreen(Screen):
-
+    anim = Animation(x=50) + Animation(size=(80, 80), duration=2.)
+    anim.start(widget)
     def __init__(self, **kwargs):
         Builder.load_file('TransitionScreen.kv')
         super(TransitionScreen, self).__init__(**kwargs)
 
     def transitionback(self):
         SCREEN_MANAGER.current = MAIN_SCREEN_NAME
+
+
+
 
 
 class AdminScreen(Screen):
