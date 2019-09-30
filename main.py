@@ -28,6 +28,7 @@ ctr2 = 0
 
 
 
+
 class ProjectNameGUI(App):
     """
     Class to handle running the GUI Application
@@ -55,7 +56,9 @@ class MainScreen(Screen):
     flip = ObjectProperty(None)
     slider = ObjectProperty(None)
     imageBtn = ObjectProperty(None)
+    pratik2 = ObjectProperty(None)
     button_state_var = False
+
 
 
     def pressed(self):
@@ -96,10 +99,13 @@ class MainScreen(Screen):
     def transitionto(self):
         SCREEN_MANAGER.current = TRANSITION_SCREEN_NAME
 
+    def animate(self):
+        anim = Animation(x=50) + Animation(size=(80, 80), duration=2.)
+        anim.start(self.ids.animate_pratik)
+
 
 class TransitionScreen(Screen):
-    anim = Animation(x=50) + Animation(size=(80, 80), duration=2.)
-    anim.start(widget)
+
     def __init__(self, **kwargs):
         Builder.load_file('TransitionScreen.kv')
         super(TransitionScreen, self).__init__(**kwargs)
@@ -107,8 +113,9 @@ class TransitionScreen(Screen):
     def transitionback(self):
         SCREEN_MANAGER.current = MAIN_SCREEN_NAME
 
-
-
+    def animate(self):
+        anim = Animation(x=50) + Animation(size=(80, 80), duration=2.)
+        anim.start(self.ids.pratik2)
 
 
 class AdminScreen(Screen):
