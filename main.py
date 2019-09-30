@@ -8,7 +8,7 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.slider import Slider
 from kivy.animation import Animation, AnimationTransition
-
+from pidev import Joystick
 
 from pidev.MixPanel import MixPanel
 from pidev.kivy.PassCodeScreen import PassCodeScreen
