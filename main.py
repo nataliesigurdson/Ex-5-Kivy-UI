@@ -1,4 +1,5 @@
 import os
+import pygame
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -8,7 +9,10 @@ from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
 from kivy.uix.slider import Slider
 from kivy.animation import Animation, AnimationTransition
-from pidev import Joystick
+from threading import Thread
+from pidev.Joystick import Joystick
+from time import sleep
+
 
 from pidev.MixPanel import MixPanel
 from pidev.kivy.PassCodeScreen import PassCodeScreen
@@ -25,8 +29,7 @@ ADMIN_SCREEN_NAME = 'admin'
 TRANSITION_SCREEN_NAME = 'TransitionScreen'
 ctr = 1
 ctr2 = 0
-
-
+joystick = Joystick(0, False)
 
 
 class ProjectNameGUI(App):
@@ -57,7 +60,12 @@ class MainScreen(Screen):
     slider = ObjectProperty(None)
     imageBtn = ObjectProperty(None)
     pratik2 = ObjectProperty(None)
+    joy_y_val = ObjectProperty()
+    joy_x_val = ObjectProperty()
+
     button_state_var = False
+
+
 
 
 
@@ -103,6 +111,16 @@ class MainScreen(Screen):
         anim = Animation(x=50) + Animation(size=(80, 80), duration=2.)
         anim.start(self.ids.animate_pratik)
 
+    def joy_update(self):  # This should be inside the MainScreen Class
+        while True:
+            self.joy_x_val = joystick.get_axis('x')
+            self.ids.joy_label_x.x = (self.joy_x_val)
+            self.joy_y_val = joystick.get_axis('y')
+            self.ids.joy_label_y.y = (self.joy_y_val)
+            sleep(.1)
+
+    def start_joy_thread(self):  # This should be inside the MainScreen Class
+        Thread(target=self.joy_update).start()
 
 class TransitionScreen(Screen):
 
