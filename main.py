@@ -29,7 +29,7 @@ ADMIN_SCREEN_NAME = 'admin'
 TRANSITION_SCREEN_NAME = 'TransitionScreen'
 ctr = 1
 ctr2 = 0
-joystick = Joystick(0, False)
+joystick = Joystick(0, True)
 
 
 class ProjectNameGUI(App):
