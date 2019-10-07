@@ -117,6 +117,13 @@ class MainScreen(Screen):
             self.ids.joy_label_x.x = (self.joy_x_val)
             self.joy_y_val = joystick.get_axis('y')
             self.ids.joy_label_y.y = (self.joy_y_val)
+            for x in range(11):
+                if joystick.get_button_state(x) == 1:
+                    self.ids.jButton.text = str(x+1)
+                    break
+                else:
+                    self.ids.jButton.text = str(0)
+
             sleep(.1)
 
     def start_joy_thread(self):  # This should be inside the MainScreen Class

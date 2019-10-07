@@ -44,8 +44,8 @@
         id: onOffBtn
         text: "Toggle"
         size: 100, 100
-        x: root.width * 0.75
-        y:root.height * 0.35
+        x: root.width * 0.08
+        y:root.height * 0.7
         color: 1, 0, 0, 1
        # on_press: root.button_state(OnOffBtn.text)
         on_press: root.toggle()
@@ -54,8 +54,8 @@
         id: ctrBtn
         text: "Counter"
         size: 100, 100
-        x: root.width * 0.15
-        y:root.height * 0.35
+        x: root.width * 0.08
+        y:root.height * 0.1
         color: 1, 0, 0, 1
         on_press: root.counter()
 
@@ -63,7 +63,7 @@
         id: mtrBtn
         text: "motor"
         size: 100, 100
-        x: root.width * 0.45
+        x: root.width * 0.08
         y:root.height * 0.35
         color: 0, 1, 1, 1
         on_press: root.flip = not root.flip
@@ -72,7 +72,7 @@
         id: motorLabel
         text: "motor on" if root.flip else "motor off"
         size: 1000, 1000
-        x: root.width * 0
+        x: root.width * -0.36
         y:root.height * -0.2
         color: 0, 0, 0, 1
 
@@ -81,6 +81,7 @@
         min: 0
         max: 100
         y:root.height * .5
+        size_hint: 0.2, 0.2
         step: 1
 
     Label:
@@ -92,7 +93,7 @@
 
     ImageButton:
         id: imageBtn
-        source: "tiny_pratik2.jpg"
+        source: "juliam.jpg"
         size: 100, 100
         x: root.width * 0.45
         y: root.height * 0.05
@@ -122,5 +123,11 @@
         y:root.height * 0.2
         color: 0, 0, 0, 1
 
+    Label
+        id: jButton
+        size: 100, 100
+        x: root.width * 0.0001
+        y:root.height * 0.45
+        color: 0, 0, 0, 1
 
 
